@@ -1,0 +1,12 @@
+#ifndef BLUETOOTH_GLOBAL_H
+#define BLUETOOTH_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#if defined(BLUETOOTH_LIBRARY)
+#  define BLUETOOTHSHARED_EXPORT Q_DECL_EXPORT
+#else
+#  define BLUETOOTHSHARED_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // BLUETOOTH_GLOBAL_H
