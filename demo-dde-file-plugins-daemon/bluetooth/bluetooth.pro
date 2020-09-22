@@ -8,6 +8,8 @@ QT       -= gui
 
 TARGET = bluetooth
 TEMPLATE = lib
+CONFIG   += plugin
+DESTDIR  = ../plugins
 
 DEFINES += BLUETOOTH_LIBRARY
 
