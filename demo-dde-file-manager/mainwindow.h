@@ -4,6 +4,7 @@
 #include <QWidget>
 
 #include "dbus-api/copymoveservice_interface.h"
+#include "dbus-api/rootservice_interface.h"
 
 namespace Ui {
 class MainWindow;
@@ -20,6 +21,8 @@ public:
 private slots:
     void on_pushButton_2_clicked();
 
+    void on_pushButton_clicked();
+
 private:
     void initInterfaces();
 
@@ -27,6 +30,7 @@ private:
     Ui::MainWindow *ui;
 
     ComDemoIoDaemonCopyMoveServiceInterface *m_copymoveInter {nullptr};
+    ComDemoFilemanagerDaemonRootServiceInterface *m_rootInter {nullptr};
 };
 
 #endif // MAINWINDOW_H

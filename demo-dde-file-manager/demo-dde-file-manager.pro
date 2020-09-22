@@ -29,11 +29,13 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    ../dbus-api/copymoveservice_interface.cpp
+    ../dbus-api/copymoveservice_interface.cpp \
+    ../dbus-api/rootservice_interface.cpp
 
 HEADERS += \
         mainwindow.h \
-    ../dbus-api/copymoveservice_interface.h
+    ../dbus-api/copymoveservice_interface.h \
+    ../dbus-api/rootservice_interface.h
 
 FORMS += \
         mainwindow.ui

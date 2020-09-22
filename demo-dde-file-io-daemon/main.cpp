@@ -13,7 +13,7 @@ void regiserDBUS()
 {
     QDBusConnection connection = QDBusConnection::sessionBus();
     if (!connection.interface()->isServiceRegistered(DaemonServicePath)) {
-        qDebug() << connection.registerService(DaemonServicePath) << "register" << DaemonServicePath << "success";
+        qDebug() << connection.registerService(DaemonServicePath) << "register" << DaemonServicePath;
     }
 }
 

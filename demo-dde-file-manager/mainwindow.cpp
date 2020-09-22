@@ -19,9 +19,17 @@ void MainWindow::initInterfaces()
     m_copymoveInter = new ComDemoIoDaemonCopyMoveServiceInterface("com.demo.io.daemon",
                                                                   "/com/demo/io/daemon/CopyMoveService",
                                                                   QDBusConnection::sessionBus(), this);
+    m_rootInter = new ComDemoFilemanagerDaemonRootServiceInterface("com.demo.filemanager.daemon",
+                                                               "/com/demo/filemanager/daemon/RootService",
+                                                               QDBusConnection::systemBus(), this);
 }
 
 void MainWindow::on_pushButton_2_clicked()
 {
     m_copymoveInter->Copy("/tmp/a", "/tmp/b");
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    m_rootInter->createFileInAnyWhere("/tmp/root.txt");
 }

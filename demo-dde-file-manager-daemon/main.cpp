@@ -1,12 +1,30 @@
 #include <QCoreApplication>
+#include <QDBusConnection>
+#include <QDBusConnectionInterface>
 #include <QDebug>
 
 #include "singleapp.hpp"
 #include "watchdog.hpp"
+#include "rootservice.h"
+
+static const QString DaemonServicePath = "com.demo.filemanager.daemon";
+
+void regiserDBUS()
+{
+    QDBusConnection connection = QDBusConnection::systemBus();
+    if (!connection.interface()->isServiceRegistered(DaemonServicePath)) {
+        qDebug() << connection.registerService(DaemonServicePath) << "register" << DaemonServicePath;
+        qDebug() << connection.lastError().message();
+    }
+}
 
 void business()
 {
-
+    QEventLoop loop;
+    regiserDBUS();
+    qDebug() << "child pid" << getpid() << "parent pid is: " << getppid();
+    RootService *service = new RootService;
+    loop.exec();
 }
 
 int main(int argc, char *argv[])
