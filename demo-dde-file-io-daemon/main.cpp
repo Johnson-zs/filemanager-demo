@@ -1,12 +1,29 @@
 #include <QCoreApplication>
+#include <QDBusConnection>
+#include <QDBusConnectionInterface>
 #include <QDebug>
 
 #include "singleapp.hpp"
 #include "watchdog.hpp"
+#include "copymoveservice.h"
+
+static const QString DaemonServicePath = "com.demo.io.daemon";
+
+void regiserDBUS()
+{
+    QDBusConnection connection = QDBusConnection::sessionBus();
+    if (!connection.interface()->isServiceRegistered(DaemonServicePath)) {
+        qDebug() << connection.registerService(DaemonServicePath) << "register" << DaemonServicePath << "success";
+    }
+}
 
 void business()
 {
-
+    QEventLoop loop;
+    regiserDBUS();
+    qDebug() << "child pid" << getpid() << "parent pid is: " << getppid();
+    CopyMoveService *service = new CopyMoveService;
+    loop.exec();
 }
 
 int main(int argc, char *argv[])
