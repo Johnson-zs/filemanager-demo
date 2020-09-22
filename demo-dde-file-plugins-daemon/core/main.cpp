@@ -1,15 +1,34 @@
 #include <QCoreApplication>
+#include <QDBusConnection>
+#include <QDBusConnectionInterface>
 #include <QDebug>
 
 #include "pluginmanager.h"
 #include "singleapp.hpp"
 #include "watchdog.hpp"
+#include "plugintestservice.h"
+
+static const QString DaemonServicePath = "com.demo.plugins.daemon";
+
+void regiserDBUS()
+{
+    QDBusConnection connection = QDBusConnection::sessionBus();
+    if (!connection.interface()->isServiceRegistered(DaemonServicePath)) {
+        qDebug() << connection.registerService(DaemonServicePath) << "register" << DaemonServicePath;
+    }
+}
+
 
 void business()
 {
+    QEventLoop loop;
+    regiserDBUS();
     qDebug() << "child pid" << getpid() << "parent pid is: " << getppid();
     PluginManager manager;
     manager.loadPlugin(qApp->applicationDirPath() + "/../plugins");
+    PluginTestService *service = new PluginTestService;
+    service->doSomething();
+    loop.exec();
 }
 
 int main(int argc, char *argv[])

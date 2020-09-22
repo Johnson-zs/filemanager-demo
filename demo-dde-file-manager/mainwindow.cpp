@@ -22,6 +22,9 @@ void MainWindow::initInterfaces()
     m_rootInter = new ComDemoFilemanagerDaemonRootServiceInterface("com.demo.filemanager.daemon",
                                                                "/com/demo/filemanager/daemon/RootService",
                                                                QDBusConnection::systemBus(), this);
+    m_pluginsInter = new ComDemoPluginsDaemonPluginTestServiceInterface("com.demo.plugins.daemon",
+                                                                        "/com/demo/plugins/daemon/PluginTestService",
+                                                                        QDBusConnection::sessionBus(), this);
 }
 
 void MainWindow::on_pushButton_2_clicked()
@@ -32,4 +35,9 @@ void MainWindow::on_pushButton_2_clicked()
 void MainWindow::on_pushButton_clicked()
 {
     m_rootInter->createFileInAnyWhere("/tmp/root.txt");
+}
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    m_pluginsInter->doSomething();
 }

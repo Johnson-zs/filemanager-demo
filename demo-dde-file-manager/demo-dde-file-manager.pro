@@ -30,12 +30,14 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     ../dbus-api/copymoveservice_interface.cpp \
-    ../dbus-api/rootservice_interface.cpp
+    ../dbus-api/rootservice_interface.cpp \
+    ../dbus-api/pluginservice_interface.cpp
 
 HEADERS += \
         mainwindow.h \
     ../dbus-api/copymoveservice_interface.h \
-    ../dbus-api/rootservice_interface.h
+    ../dbus-api/rootservice_interface.h \
+    ../dbus-api/pluginservice_interface.h
 
 FORMS += \
         mainwindow.ui

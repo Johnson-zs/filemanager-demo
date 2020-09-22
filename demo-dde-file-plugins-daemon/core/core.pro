@@ -1,4 +1,5 @@
 QT -= gui
+QT += dbus
 
 CONFIG += c++11 console
 CONFIG -= app_bundle
@@ -18,11 +19,15 @@ INCLUDEPATH += ../../
 
 SOURCES += \
         main.cpp \
-    pluginmanager.cpp
+    pluginmanager.cpp \
+    plugintestservice.cpp \
+    plugintestadaptor.cpp
 
 HEADERS += \
         $$PWD/../interfaces/plugininterface.h \
-    pluginmanager.h
+    pluginmanager.h \
+    plugintestservice.h \
+    plugintestadaptor.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
