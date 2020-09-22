@@ -6,7 +6,7 @@
 
 void business()
 {
-
+    qDebug() << "child pid" << getpid() << "parent pid is: " << getppid();    
 }
 
 int main(int argc, char *argv[])
